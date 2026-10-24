@@ -14,8 +14,9 @@ services:
         generateValue: true
       - key: SEED_DEMO_DATA
         value: "true"
+      # Sample history runs OCR on generated receipts and exceeds the 512 MB free instance; keep only the demo login.
       - key: SEED_DEMO_COUNT
-        value: "6"
+        value: "0"
       - key: OCR_THREADS
         value: "1"
       # Keep glibc/BLAS memory low enough for the 512 MB free instance.
