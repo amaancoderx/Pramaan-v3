@@ -1,11 +1,14 @@
 # Render's free plan sleeps a service after 15 idle minutes.
-# This pings the web app and the API every 5 minutes so both stay awake.
+# GitHub fires this roughly every 5 minutes (scheduled runs can be late), and each run keeps
+# pinging for ~14 minutes, so a pinger is always alive even when a scheduled run is delayed.
 # Override the URLs with repo variables RENDER_WEB_URL / RENDER_API_URL if the service names change.
 name: Keep Render Awake
 
 on:
   schedule:
     - cron: "*/5 * * * *"
+  push:
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
@@ -15,18 +18,18 @@ concurrency:
 jobs:
   ping:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 20
     steps:
       - name: Ping web and API
         env:
           WEB_URL: ${{ vars.RENDER_WEB_URL || 'https://pramaan-web-5rev.onrender.com' }}
           API_URL: ${{ vars.RENDER_API_URL || 'https://pramaan-api-5rev.onrender.com' }}
         run: |
-          for url in "${API_URL%/}/api/health" "${WEB_URL%/}/login"; do
-            for attempt in 1 2 3; do
+          for cycle in 1 2 3 4; do
+            for url in "${API_URL%/}/api/health" "${WEB_URL%/}/login"; do
               status=$(curl -s -L -o /dev/null -m 90 -w "%{http_code}" "$url" || echo "000")
-              echo "[$(date -u +%H:%M:%S)] $url -> HTTP $status (attempt $attempt)"
-              [ "$status" = "200" ] && break
-              sleep 20
+              echo "[$(date -u +%H:%M:%S)] cycle $cycle $url -> HTTP $status"
             done
+            [ "$cycle" -lt 4 ] && sleep 240
           done
+          exit 0
