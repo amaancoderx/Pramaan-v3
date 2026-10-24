@@ -49,7 +49,7 @@ class Settings(BaseSettings):
     OCR_THREADS: int = 0  # 0 = onnxruntime default; 1 suits tiny shared CPUs
     # RapidOCR's onnx models overflow Render's 512 MB free instance; tesseract fits.
     OCR_ENGINE: str = "tesseract" if os.environ.get("RENDER") else "rapidocr"
-    OCR_LIGHT: bool = False  # one OCR pass instead of the extra contrast/band passes
+    OCR_LIGHT: bool = bool(os.environ.get("RENDER"))  # one OCR pass instead of the extra contrast/band passes
     DEMO_MERCHANT_EMAIL: str = "merchant@pramaan.local"
     DEMO_MERCHANT_PASSWORD: str = "shopkeeper123"
     DEMO_MERCHANT_NAME: str = "Sharma Kirana Store"
