@@ -1,4 +1,5 @@
 import asyncio
+import os
 import logging
 import threading
 import time
@@ -59,7 +60,8 @@ async def lifespan(app: FastAPI):
         purge_expired(db)
         if settings.SEED_DEMO_DATA:
             ensure_demo_merchant(db)
-    if settings.SEED_DEMO_DATA:
+    # Sample history runs OCR on generated receipts, which overflows Render's 512 MB free instance.
+    if settings.SEED_DEMO_DATA and settings.SEED_DEMO_COUNT > 0 and not os.environ.get("RENDER"):
         threading.Thread(target=_seed_in_background, name="seed", daemon=True).start()
     task = asyncio.create_task(_purge_loop())
     yield
