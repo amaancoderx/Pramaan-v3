@@ -37,6 +37,8 @@ class OCREngine:
     def _get(self):
         if not self._initialized:
             with self._lock:
+                if not self._initialized and settings.OCR_ENGINE == "tesseract":
+                    self._ocr, self._name, self._initialized = None, "tesseract", True
                 if not self._initialized:
                     try:
                         from rapidocr_onnxruntime import RapidOCR
@@ -168,6 +170,8 @@ class OCREngine:
             primary = self._run_view(engine, img)
             h, w = img.shape[:2]
             passes = [primary]
+            if settings.OCR_LIGHT:
+                return self._finish(primary, img)
 
             # Contrast-enhanced full view can recover pale text on dark/saturated receipt panels.
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) if img.ndim == 3 else img
@@ -199,6 +203,10 @@ class OCREngine:
             log.error("OCR pass failed: %s", e)
             items = primary
 
+        return self._finish(items, img)
+
+    @staticmethod
+    def _finish(items: List[Dict[str, Any]], img: np.ndarray) -> List[Dict[str, Any]]:
         h, w = img.shape[:2]
         items = [i for i in items if i["text"] and i["bbox"]["x"] < w and i["bbox"]["y"] < h]
         items.sort(key=lambda i: (i["bbox"]["y"], i["bbox"]["x"]))
