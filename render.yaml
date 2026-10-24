@@ -18,9 +18,16 @@ services:
         value: "6"
       - key: OCR_THREADS
         value: "1"
-      # Public URL of pramaan-web, e.g. https://pramaan-web-xxxx.onrender.com (used for the QR in PDF reports).
+      # Keep glibc/BLAS memory low enough for the 512 MB free instance.
+      - key: MALLOC_ARENA_MAX
+        value: "2"
+      - key: OMP_NUM_THREADS
+        value: "1"
+      # Public URL of pramaan-web (used for the QR in PDF reports).
       - key: PUBLIC_APP_URL
-        sync: false
+        value: https://pramaan-web-5rev.onrender.com
+      - key: CORS_ORIGINS
+        value: https://pramaan-web-5rev.onrender.com
 
   - type: web
     name: pramaan-web
@@ -37,6 +44,6 @@ services:
       # Public URL of pramaan-api, e.g. https://pramaan-api-xxxx.onrender.com. Free services have no private
       # network, so the web app must reach the API over its public URL.
       - key: BACKEND_URL
-        sync: false
+        value: https://pramaan-api-5rev.onrender.com
       - key: NEXT_PUBLIC_BACKEND_URL
-        sync: false
+        value: https://pramaan-api-5rev.onrender.com

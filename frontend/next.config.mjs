@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const defaultBackend = process.env.RENDER ? "https://pramaan-api.onrender.com" : "http://127.0.0.1:8000";
+const defaultBackend = process.env.RENDER ? "https://pramaan-api-5rev.onrender.com" : "http://127.0.0.1:8000";
 const rawBackend = process.env.BACKEND_URL || defaultBackend;
 // Render passes a bare host ("pramaan-api.onrender.com"); add the scheme.
 const backendUrl = rawBackend.startsWith("http") ? rawBackend.replace(/\/$/, "") : `https://${rawBackend}`;

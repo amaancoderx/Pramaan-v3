@@ -1,82 +1,32 @@
 # Render's free plan sleeps a service after 15 idle minutes.
-# This workflow automatically runs every 10 minutes to ping the Web app and API health endpoints,
-# keeping both Render free services warm and preventing them from spinning down.
-name: Keep Render Awake (Automatic Cron)
+# This pings the web app and the API every 5 minutes so both stay awake.
+# Override the URLs with repo variables RENDER_WEB_URL / RENDER_API_URL if the service names change.
+name: Keep Render Awake
 
 on:
   schedule:
-    # Runs every 10 minutes (cron syntax)
-    - cron: "*/10 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
-    inputs:
-      web_url:
-        description: "Web App URL override (e.g. https://pramaan-web.onrender.com)"
-        required: false
-      api_url:
-        description: "API URL override (e.g. https://pramaan-api.onrender.com)"
-        required: false
 
 concurrency:
   group: keep-awake
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   ping:
-    name: Ping Services
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 5
     steps:
-      - name: Ping Web & API Endpoints
+      - name: Ping web and API
         env:
-          INPUT_WEB: ${{ github.event.inputs.web_url }}
-          INPUT_API: ${{ github.event.inputs.api_url }}
-          VARS_WEB: ${{ vars.RENDER_WEB_URL }}
-          VARS_API: ${{ vars.RENDER_API_URL }}
-          SECRETS_WEB: ${{ secrets.RENDER_WEB_URL }}
-          SECRETS_API: ${{ secrets.RENDER_API_URL }}
+          WEB_URL: ${{ vars.RENDER_WEB_URL || 'https://pramaan-web-5rev.onrender.com' }}
+          API_URL: ${{ vars.RENDER_API_URL || 'https://pramaan-api-5rev.onrender.com' }}
         run: |
-          set -e
-
-          # Resolve URLs in order of precedence: Manual input -> Repository Variable -> Secret -> Fallback
-          WEB_URL="${INPUT_WEB:-${VARS_WEB:-${SECRETS_WEB:-}}}"
-          API_URL="${INPUT_API:-${VARS_API:-${SECRETS_API:-}}}"
-
-          TARGET_URLS=()
-
-          if [ -n "$WEB_URL" ]; then
-            [[ "$WEB_URL" != */api/health* ]] && WEB_URL="${WEB_URL%/}/api/health"
-            TARGET_URLS+=("$WEB_URL")
-          fi
-
-          if [ -n "$API_URL" ]; then
-            [[ "$API_URL" != */api/health* ]] && API_URL="${API_URL%/}/api/health"
-            TARGET_URLS+=("$API_URL")
-          fi
-
-          if [ ${#TARGET_URLS[@]} -eq 0 ]; then
-            echo "::warning title=No Custom Render URLs Configured::Set RENDER_WEB_URL and RENDER_API_URL under GitHub Repo -> Settings -> Secrets and variables -> Actions -> Variables"
-            echo "Falling back to default Render service URLs..."
-            TARGET_URLS=("https://pramaan-web.onrender.com/api/health" "https://pramaan-api.onrender.com/api/health")
-          fi
-
-          echo "Target ping URLs:"
-          for u in "${TARGET_URLS[@]}"; do
-            echo "  - $u"
-          done
-          echo ""
-          echo "Starting 3-stage keep-awake loop (spaced 4 minutes apart to cover delay jitter)..."
-
-          for i in 1 2 3; do
-            echo "========================================="
-            echo "Ping cycle $i of 3 at $(date -u +%H:%M:%S) UTC"
-            echo "========================================="
-            for url in "${TARGET_URLS[@]}"; do
-              status=$(curl -s -L -o /dev/null -m 90 -w "%{http_code}" "$url" || echo "FAIL")
-              echo "[$(date -u +%H:%M:%S)] $url -> HTTP $status"
+          for url in "${API_URL%/}/api/health" "${WEB_URL%/}/login"; do
+            for attempt in 1 2 3; do
+              status=$(curl -s -L -o /dev/null -m 90 -w "%{http_code}" "$url" || echo "000")
+              echo "[$(date -u +%H:%M:%S)] $url -> HTTP $status (attempt $attempt)"
+              [ "$status" = "200" ] && break
+              sleep 20
             done
-            if [ "$i" -lt 3 ]; then
-              echo "Waiting 4 minutes before next cycle..."
-              sleep 240
-            fi
           done
-          echo "Keep-awake execution finished successfully."

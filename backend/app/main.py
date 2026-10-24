@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import threading
+import time
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
@@ -23,6 +24,8 @@ log = logging.getLogger("pramaan")
 
 
 def _seed_in_background() -> None:
+    # Let startup and the first health checks finish before the memory-heavy OCR runs.
+    time.sleep(30)
     with SessionLocal() as db:
         try:
             seed_history(db, ensure_demo_merchant(db), count=settings.SEED_DEMO_COUNT)
