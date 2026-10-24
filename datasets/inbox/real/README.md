@@ -1,0 +1,1 @@
+Place only consented, privacy-redacted examples with independently confirmed successful credits here. A successful-looking screenshot alone is not ground truth. Do not include raw bank statements or private transaction evidence in this folder.

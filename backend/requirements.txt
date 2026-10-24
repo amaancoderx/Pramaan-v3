@@ -1,0 +1,26 @@
+# Runtime
+fastapi==0.161.0
+uvicorn[standard]==0.54.0
+pydantic==2.14.1
+pydantic-settings==2.16.1
+SQLAlchemy==2.1.6
+PyYAML==6.0.3
+python-multipart==0.0.32
+python-jose[cryptography]==3.5.0
+bcrypt==4.0.1
+tzdata==2026.5
+
+# Imaging, OCR, reports
+pillow==13.0.0
+numpy==1.26.4
+opencv-python-headless==4.11.0.86
+ImageHash==4.3.2
+rapidocr-onnxruntime==1.4.4
+onnxruntime==1.31.0
+pytesseract==0.3.13
+reportlab==4.4.10
+qrcode[pil]==8.2
+
+# Tests
+pytest==9.1.1
+httpx==0.28.1

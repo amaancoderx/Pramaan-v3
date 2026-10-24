@@ -1,0 +1,42 @@
+# One-click Render deploy: Dashboard -> New -> Blueprint -> pick this repo.
+services:
+  - type: web
+    name: pramaan-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /api/health
+    envVars:
+      - key: ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: SEED_DEMO_DATA
+        value: "true"
+      - key: SEED_DEMO_COUNT
+        value: "6"
+      - key: OCR_THREADS
+        value: "1"
+      # Public URL of pramaan-web, e.g. https://pramaan-web-xxxx.onrender.com (used for the QR in PDF reports).
+      - key: PUBLIC_APP_URL
+        sync: false
+
+  - type: web
+    name: pramaan-web
+    runtime: node
+    plan: free
+    rootDir: frontend
+    buildCommand: npm ci && npm run build && cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/
+    startCommand: node .next/standalone/server.js
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: HOSTNAME
+        value: 0.0.0.0
+      # Public URL of pramaan-api, e.g. https://pramaan-api-xxxx.onrender.com. Free services have no private
+      # network, so the web app must reach the API over its public URL.
+      - key: BACKEND_URL
+        sync: false
+      - key: NEXT_PUBLIC_BACKEND_URL
+        sync: false

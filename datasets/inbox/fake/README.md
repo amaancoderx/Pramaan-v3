@@ -1,0 +1,1 @@
+Place known generated/edited samples here, with a matching non-sensitive manifest record. Controlled synthetic tampering is the cleanest starting point for known labels. Public news/article illustrations should not be copied here unless the exact image is credibly labeled as fabricated and use is permitted.

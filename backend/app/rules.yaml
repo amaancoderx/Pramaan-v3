@@ -1,0 +1,97 @@
+# Pramaan rules configuration.
+# One block per payment app. Add a new app by copying the `generic` block and changing identifiers,
+# UTR pattern and layout template. Penalties are risk points (0-100 scale, summed and capped).
+
+version: "1.1"
+
+defaults:
+  future_tolerance_minutes: 5          # clock drift allowed before "transaction in the future"
+  clock_tolerance_minutes: 5           # status-bar clock may lag transaction time by this much
+  delayed_screenshot_hours: 6
+  min_field_confidence: 0.60
+
+# Verdict thresholds per merchant strictness. Some CRITICAL payment-safety findings (e.g. receiver mismatch)
+# do not alone prove that the screenshot was forged; see compose_verdict for context-aware handling.
+strictness:
+  lenient:  { suspicious_at: 35, fake_at: 65 }
+  standard: { suspicious_at: 25, fake_at: 50 }
+  strict:   { suspicious_at: 15, fake_at: 40 }
+
+penalties:
+  amount_missing: 35
+  amount_invalid: 40
+  amount_words_mismatch: 45
+  utr_missing: 30
+  utr_invalid_format: 25
+  utr_dummy_sequence: 45
+  receiver_mismatch: 50
+  receiver_name_divergent: 15
+  receiver_not_visible: 15
+  txn_future: 25
+  txn_expired: 30
+  timestamp_missing: 15
+  clock_inconsistent: 30
+  txn_id_time_mismatch: 25
+  delayed_screenshot: 5
+  status_not_success: 50
+  status_missing: 10
+  low_confidence: 10
+  layout_mismatch: 10
+  order_ref_missing: 45
+  order_amount_only: 10
+
+apps:
+  gpay:
+    name: "Google Pay"
+    identifiers: ["google pay", "gpay", "g pay"]
+    utr_pattern: "^[0-9]{12}$"
+    success_keywords: ["completed", "paid", "successful", "success", "credited", "received", "sent"]
+    layout:
+      header_rgb: [255, 255, 255]
+      amount_y_range: [0.15, 0.50]
+      amount_centered: true
+      status_above_amount: false
+
+  phonepe:
+    name: "PhonePe"
+    identifiers: ["phonepe", "phone pe"]
+    utr_pattern: "^(T[0-9]{20,23}|[0-9]{12})$"
+    success_keywords: ["transaction successful", "payment successful", "paid successfully", "paid", "successful", "sent", "received"]
+    layout:
+      header_rgb: [95, 37, 159]
+      amount_y_range: [0.10, 0.50]
+      amount_centered: false
+      status_above_amount: true
+
+  paytm:
+    name: "Paytm"
+    identifiers: ["paytm"]
+    utr_pattern: "^[0-9]{12}$"
+    success_keywords: ["successful", "money transferred", "payment confirmed", "paid", "sent", "received"]
+    layout:
+      header_rgb: [255, 255, 255]
+      amount_y_range: [0.10, 0.50]
+      amount_centered: false
+      status_above_amount: true
+
+  bhim:
+    name: "BHIM"
+    identifiers: ["bhim"]
+    utr_pattern: "^[0-9]{12}$"
+    success_keywords: ["success", "completed", "successful", "paid", "sent", "received"]
+    layout:
+      header_rgb: null
+      amount_y_range: [0.10, 0.55]
+      amount_centered: true
+      status_above_amount: true
+
+  generic:
+    name: "Other UPI app"
+    identifiers: []
+    utr_pattern: "^[0-9]{12}$"
+    success_keywords: ["successful", "success", "completed", "paid", "credited", "received", "sent"]
+    layout:
+      header_rgb: null              # unknown app: colour is not checked
+      amount_y_range: [0.08, 0.55]
+      amount_centered: true
+      status_above_amount: true

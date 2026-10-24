@@ -1,0 +1,8 @@
+.venv
+venv
+venv_mac_unused
+__pycache__
+*.pyc
+.pytest_cache
+storage
+.env

@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+backend/.venv/
+backend/venv/
+backend/venv_mac_unused/
+
+# Node
+frontend/node_modules/
+frontend/.next/
+
+# Runtime data (generated)
+backend/storage/
+
+# Secrets
+.env
+backend/.env
+
+# OS
+.DS_Store
+Thumbs.db
+frontend/next-env.d.ts
+*.log
+
+.env.*
+!.env.example
+frontend/.env.*

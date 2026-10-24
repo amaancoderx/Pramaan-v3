@@ -1,0 +1,819 @@
+{
+  "dataset_name": "Pramaan synthetic UPI receipts v1",
+  "description": "Generic, brand-free MOCK receipts: 20 clean and 20 with scripted tamper operations (edited_amount x3, edited_utr x3, edited_date x3, cloned_digits x3, pasted_receiver x3, heavy_compression x3, editor_software x2).",
+  "generated_at": "2026-10-23T02:56:00",
+  "evaluated_at": "2026-10-23T11:26:20.807312+00:00",
+  "decision_rule": "Flagged = verdict SUSPICIOUS or LIKELY FAKE. Positive class = tampered.",
+  "note": "Results on our own synthetic test set of mock receipts. Not a measure of real-world accuracy.",
+  "total_samples": 40,
+  "clean_samples": 20,
+  "tampered_samples": 20,
+  "confusion_matrix": {
+    "true_positives": 20,
+    "true_negatives": 20,
+    "false_positives": 0,
+    "false_negatives": 0
+  },
+  "metrics": {
+    "accuracy": 100.0,
+    "precision": 100.0,
+    "recall": 100.0,
+    "f1_score": 100.0,
+    "avg_latency_seconds": 5.49,
+    "max_latency_seconds": 14.69
+  },
+  "per_tamper": {
+    "edited_amount": {
+      "detected": 3,
+      "total": 3
+    },
+    "edited_utr": {
+      "detected": 3,
+      "total": 3
+    },
+    "edited_date": {
+      "detected": 3,
+      "total": 3
+    },
+    "cloned_digits": {
+      "detected": 3,
+      "total": 3
+    },
+    "pasted_receiver": {
+      "detected": 3,
+      "total": 3
+    },
+    "heavy_compression": {
+      "detected": 3,
+      "total": 3
+    },
+    "editor_software": {
+      "detected": 2,
+      "total": 2
+    }
+  },
+  "samples": [
+    {
+      "id": "CLEAN-01",
+      "filename": "clean-01.png",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 8.292
+    },
+    {
+      "id": "CLEAN-02",
+      "filename": "clean-02.png",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 4.641
+    },
+    {
+      "id": "CLEAN-03",
+      "filename": "clean-03.png",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 3.628
+    },
+    {
+      "id": "CLEAN-04",
+      "filename": "clean-04.jpg",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 4.683
+    },
+    {
+      "id": "CLEAN-05",
+      "filename": "clean-05.png",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 3.991
+    },
+    {
+      "id": "CLEAN-06",
+      "filename": "clean-06.png",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 9.926
+    },
+    {
+      "id": "CLEAN-07",
+      "filename": "clean-07.png",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 5.22
+    },
+    {
+      "id": "CLEAN-08",
+      "filename": "clean-08.jpg",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 6.133
+    },
+    {
+      "id": "CLEAN-09",
+      "filename": "clean-09.png",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 3.925
+    },
+    {
+      "id": "CLEAN-10",
+      "filename": "clean-10.png",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 3.773
+    },
+    {
+      "id": "CLEAN-11",
+      "filename": "clean-11.png",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 5.086
+    },
+    {
+      "id": "CLEAN-12",
+      "filename": "clean-12.jpg",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 5.812
+    },
+    {
+      "id": "CLEAN-13",
+      "filename": "clean-13.png",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 4.289
+    },
+    {
+      "id": "CLEAN-14",
+      "filename": "clean-14.png",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 4.38
+    },
+    {
+      "id": "CLEAN-15",
+      "filename": "clean-15.png",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 4.89
+    },
+    {
+      "id": "CLEAN-16",
+      "filename": "clean-16.jpg",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 4.131
+    },
+    {
+      "id": "CLEAN-17",
+      "filename": "clean-17.png",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 3.669
+    },
+    {
+      "id": "CLEAN-18",
+      "filename": "clean-18.png",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 6.236
+    },
+    {
+      "id": "CLEAN-19",
+      "filename": "clean-19.png",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 9.999
+    },
+    {
+      "id": "CLEAN-20",
+      "filename": "clean-20.jpg",
+      "label": "clean",
+      "tamper_type": "none",
+      "description": "Unedited mock receipt",
+      "verdict": "LIKELY GENUINE",
+      "risk_score": 0.0,
+      "predicted_tampered": false,
+      "top_reason": null,
+      "reasons": [],
+      "codes": [],
+      "layers": [],
+      "processing_time": 3.751
+    },
+    {
+      "id": "TAMPER-01",
+      "filename": "tamper-01.png",
+      "label": "tampered",
+      "tamper_type": "edited_amount",
+      "description": "Amount edited from 6,400 to 15,400; words left unchanged",
+      "verdict": "LIKELY FAKE",
+      "risk_score": 80.0,
+      "predicted_tampered": true,
+      "top_reason": "Amount in digits and words do not match",
+      "reasons": [
+        "Amount in digits and words do not match",
+        "Patch behind the amount"
+      ],
+      "codes": [
+        "R_AMT_WORDS_MISMATCH",
+        "F_BACKGROUND_MISMATCH"
+      ],
+      "layers": [
+        "forensics",
+        "rules"
+      ],
+      "processing_time": 4.702
+    },
+    {
+      "id": "TAMPER-02",
+      "filename": "tamper-02.png",
+      "label": "tampered",
+      "tamper_type": "edited_amount",
+      "description": "Amount edited from 249 to 996; words left unchanged",
+      "verdict": "LIKELY FAKE",
+      "risk_score": 80.0,
+      "predicted_tampered": true,
+      "top_reason": "Amount in digits and words do not match",
+      "reasons": [
+        "Amount in digits and words do not match",
+        "Patch behind the amount"
+      ],
+      "codes": [
+        "R_AMT_WORDS_MISMATCH",
+        "F_BACKGROUND_MISMATCH"
+      ],
+      "layers": [
+        "forensics",
+        "rules"
+      ],
+      "processing_time": 10.872
+    },
+    {
+      "id": "TAMPER-03",
+      "filename": "tamper-03.png",
+      "label": "tampered",
+      "tamper_type": "edited_amount",
+      "description": "Amount edited from 8,200 to 17,200; words left unchanged",
+      "verdict": "LIKELY FAKE",
+      "risk_score": 80.0,
+      "predicted_tampered": true,
+      "top_reason": "Amount in digits and words do not match",
+      "reasons": [
+        "Amount in digits and words do not match",
+        "Patch behind the amount"
+      ],
+      "codes": [
+        "R_AMT_WORDS_MISMATCH",
+        "F_BACKGROUND_MISMATCH"
+      ],
+      "layers": [
+        "forensics",
+        "rules"
+      ],
+      "processing_time": 3.57
+    },
+    {
+      "id": "TAMPER-04",
+      "filename": "tamper-04.png",
+      "label": "tampered",
+      "tamper_type": "edited_utr",
+      "description": "UTR replaced with a plausible number typed in a slightly different font",
+      "verdict": "LIKELY FAKE",
+      "risk_score": 65.0,
+      "predicted_tampered": true,
+      "top_reason": "Patch behind the UTR",
+      "reasons": [
+        "Patch behind the UTR",
+        "The UTR looks retyped"
+      ],
+      "codes": [
+        "F_BACKGROUND_MISMATCH",
+        "F_TEXT_REGION_INCONSISTENT"
+      ],
+      "layers": [
+        "forensics"
+      ],
+      "processing_time": 14.69
+    },
+    {
+      "id": "TAMPER-05",
+      "filename": "tamper-05.png",
+      "label": "tampered",
+      "tamper_type": "edited_utr",
+      "description": "UTR replaced with dummy sequence 123456789012",
+      "verdict": "LIKELY FAKE",
+      "risk_score": 100.0,
+      "predicted_tampered": true,
+      "top_reason": "UTR looks made up",
+      "reasons": [
+        "UTR looks made up",
+        "Patch behind the UTR",
+        "The UTR looks retyped"
+      ],
+      "codes": [
+        "R_UTR_DUMMY_SEQUENCE",
+        "F_BACKGROUND_MISMATCH",
+        "F_TEXT_REGION_INCONSISTENT"
+      ],
+      "layers": [
+        "forensics",
+        "rules"
+      ],
+      "processing_time": 4.443
+    },
+    {
+      "id": "TAMPER-06",
+      "filename": "tamper-06.png",
+      "label": "tampered",
+      "tamper_type": "edited_utr",
+      "description": "UTR edited to 11 digits",
+      "verdict": "LIKELY FAKE",
+      "risk_score": 100.0,
+      "predicted_tampered": true,
+      "top_reason": "UTR has the wrong format",
+      "reasons": [
+        "UTR has the wrong format",
+        "Patch behind the UTR",
+        "The UTR looks retyped"
+      ],
+      "codes": [
+        "R_UTR_FORMAT_INVALID",
+        "F_BACKGROUND_MISMATCH",
+        "F_TEXT_REGION_INCONSISTENT"
+      ],
+      "layers": [
+        "forensics",
+        "rules"
+      ],
+      "processing_time": 4.363
+    },
+    {
+      "id": "TAMPER-07",
+      "filename": "tamper-07.png",
+      "label": "tampered",
+      "tamper_type": "edited_date",
+      "description": "Date edited to two days in the future",
+      "verdict": "LIKELY FAKE",
+      "risk_score": 100.0,
+      "predicted_tampered": true,
+      "top_reason": "Payment time is in the future",
+      "reasons": [
+        "Payment time is in the future",
+        "Patch behind the date and time",
+        "The date and time looks retyped"
+      ],
+      "codes": [
+        "R_TXN_FUTURE",
+        "F_BACKGROUND_MISMATCH",
+        "F_TEXT_REGION_INCONSISTENT"
+      ],
+      "layers": [
+        "forensics",
+        "rules"
+      ],
+      "processing_time": 3.737
+    },
+    {
+      "id": "TAMPER-08",
+      "filename": "tamper-08.png",
+      "label": "tampered",
+      "tamper_type": "edited_date",
+      "description": "Date edited to two days in the future",
+      "verdict": "LIKELY FAKE",
+      "risk_score": 100.0,
+      "predicted_tampered": true,
+      "top_reason": "Payment time is in the future",
+      "reasons": [
+        "Payment time is in the future",
+        "Patch behind the date and time",
+        "The date and time looks retyped"
+      ],
+      "codes": [
+        "R_TXN_FUTURE",
+        "F_BACKGROUND_MISMATCH",
+        "F_TEXT_REGION_INCONSISTENT"
+      ],
+      "layers": [
+        "forensics",
+        "rules"
+      ],
+      "processing_time": 3.725
+    },
+    {
+      "id": "TAMPER-09",
+      "filename": "tamper-09.png",
+      "label": "tampered",
+      "tamper_type": "edited_date",
+      "description": "Old receipt with date edited; transaction is days outside the allowed window",
+      "verdict": "LIKELY FAKE",
+      "risk_score": 95.0,
+      "predicted_tampered": true,
+      "top_reason": "Patch behind the date and time",
+      "reasons": [
+        "Patch behind the date and time",
+        "Payment is older than your allowed window",
+        "The date and time looks retyped"
+      ],
+      "codes": [
+        "F_BACKGROUND_MISMATCH",
+        "R_TXN_EXPIRED",
+        "F_TEXT_REGION_INCONSISTENT"
+      ],
+      "layers": [
+        "forensics",
+        "rules"
+      ],
+      "processing_time": 3.695
+    },
+    {
+      "id": "TAMPER-10",
+      "filename": "tamper-10.png",
+      "label": "tampered",
+      "tamper_type": "cloned_digits",
+      "description": "Digits duplicated by copy-move in the amount and UTR",
+      "verdict": "LIKELY FAKE",
+      "risk_score": 45.0,
+      "predicted_tampered": true,
+      "top_reason": "Amount in digits and words do not match",
+      "reasons": [
+        "Amount in digits and words do not match"
+      ],
+      "codes": [
+        "R_AMT_WORDS_MISMATCH"
+      ],
+      "layers": [
+        "rules"
+      ],
+      "processing_time": 9.363
+    },
+    {
+      "id": "TAMPER-11",
+      "filename": "tamper-11.png",
+      "label": "tampered",
+      "tamper_type": "cloned_digits",
+      "description": "Digits duplicated by copy-move in the amount and UTR",
+      "verdict": "LIKELY FAKE",
+      "risk_score": 45.0,
+      "predicted_tampered": true,
+      "top_reason": "Amount in digits and words do not match",
+      "reasons": [
+        "Amount in digits and words do not match"
+      ],
+      "codes": [
+        "R_AMT_WORDS_MISMATCH"
+      ],
+      "layers": [
+        "rules"
+      ],
+      "processing_time": 3.805
+    },
+    {
+      "id": "TAMPER-12",
+      "filename": "tamper-12.png",
+      "label": "tampered",
+      "tamper_type": "cloned_digits",
+      "description": "Digits duplicated by copy-move in the amount and UTR",
+      "verdict": "LIKELY FAKE",
+      "risk_score": 45.0,
+      "predicted_tampered": true,
+      "top_reason": "Amount in digits and words do not match",
+      "reasons": [
+        "Amount in digits and words do not match"
+      ],
+      "codes": [
+        "R_AMT_WORDS_MISMATCH"
+      ],
+      "layers": [
+        "rules"
+      ],
+      "processing_time": 3.541
+    },
+    {
+      "id": "TAMPER-13",
+      "filename": "tamper-13.png",
+      "label": "tampered",
+      "tamper_type": "pasted_receiver",
+      "description": "Receiver UPI ID pasted over with sharma.kirana1@okaxis",
+      "verdict": "LIKELY FAKE",
+      "risk_score": 85.0,
+      "predicted_tampered": true,
+      "top_reason": "Paid to a different UPI ID",
+      "reasons": [
+        "Paid to a different UPI ID",
+        "Patch behind the receiver UPI ID"
+      ],
+      "codes": [
+        "R_RECEIVER_MISMATCH",
+        "F_BACKGROUND_MISMATCH"
+      ],
+      "layers": [
+        "forensics",
+        "rules"
+      ],
+      "processing_time": 9.222
+    },
+    {
+      "id": "TAMPER-14",
+      "filename": "tamper-14.png",
+      "label": "tampered",
+      "tamper_type": "pasted_receiver",
+      "description": "Receiver UPI ID pasted over with rk.traders@upi",
+      "verdict": "LIKELY FAKE",
+      "risk_score": 50.0,
+      "predicted_tampered": true,
+      "top_reason": "Paid to a different UPI ID",
+      "reasons": [
+        "Paid to a different UPI ID"
+      ],
+      "codes": [
+        "R_RECEIVER_MISMATCH"
+      ],
+      "layers": [
+        "rules"
+      ],
+      "processing_time": 3.507
+    },
+    {
+      "id": "TAMPER-15",
+      "filename": "tamper-15.png",
+      "label": "tampered",
+      "tamper_type": "pasted_receiver",
+      "description": "Receiver UPI ID pasted over with sharma.kirana1@okaxis",
+      "verdict": "LIKELY FAKE",
+      "risk_score": 85.0,
+      "predicted_tampered": true,
+      "top_reason": "Paid to a different UPI ID",
+      "reasons": [
+        "Paid to a different UPI ID",
+        "Patch behind the receiver UPI ID"
+      ],
+      "codes": [
+        "R_RECEIVER_MISMATCH",
+        "F_BACKGROUND_MISMATCH"
+      ],
+      "layers": [
+        "forensics",
+        "rules"
+      ],
+      "processing_time": 12.592
+    },
+    {
+      "id": "TAMPER-16",
+      "filename": "tamper-16.jpg",
+      "label": "tampered",
+      "tamper_type": "heavy_compression",
+      "description": "Amount and words edited consistently, then re-saved as JPEG quality 18",
+      "verdict": "SUSPICIOUS",
+      "risk_score": 25.0,
+      "predicted_tampered": true,
+      "top_reason": "Heavily re-compressed image",
+      "reasons": [
+        "Heavily re-compressed image"
+      ],
+      "codes": [
+        "F_HEAVY_RECOMPRESSION"
+      ],
+      "layers": [
+        "forensics"
+      ],
+      "processing_time": 3.188
+    },
+    {
+      "id": "TAMPER-17",
+      "filename": "tamper-17.jpg",
+      "label": "tampered",
+      "tamper_type": "heavy_compression",
+      "description": "Amount and words edited consistently, then re-saved as JPEG quality 24",
+      "verdict": "SUSPICIOUS",
+      "risk_score": 25.0,
+      "predicted_tampered": true,
+      "top_reason": "Heavily re-compressed image",
+      "reasons": [
+        "Heavily re-compressed image"
+      ],
+      "codes": [
+        "F_HEAVY_RECOMPRESSION"
+      ],
+      "layers": [
+        "forensics"
+      ],
+      "processing_time": 3.52
+    },
+    {
+      "id": "TAMPER-18",
+      "filename": "tamper-18.jpg",
+      "label": "tampered",
+      "tamper_type": "heavy_compression",
+      "description": "Amount and words edited consistently, then re-saved as JPEG quality 24",
+      "verdict": "SUSPICIOUS",
+      "risk_score": 25.0,
+      "predicted_tampered": true,
+      "top_reason": "Heavily re-compressed image",
+      "reasons": [
+        "Heavily re-compressed image"
+      ],
+      "codes": [
+        "F_HEAVY_RECOMPRESSION"
+      ],
+      "layers": [
+        "forensics"
+      ],
+      "processing_time": 3.429
+    },
+    {
+      "id": "TAMPER-19",
+      "filename": "tamper-19.png",
+      "label": "tampered",
+      "tamper_type": "editor_software",
+      "description": "Edited in a photo editor; file metadata says 'PicsArt Photo Studio'",
+      "verdict": "LIKELY FAKE",
+      "risk_score": 50.0,
+      "predicted_tampered": true,
+      "top_reason": "Edited in a photo editor",
+      "reasons": [
+        "Edited in a photo editor"
+      ],
+      "codes": [
+        "F_EDITOR_SOFTWARE"
+      ],
+      "layers": [
+        "forensics"
+      ],
+      "processing_time": 3.797
+    },
+    {
+      "id": "TAMPER-20",
+      "filename": "tamper-20.png",
+      "label": "tampered",
+      "tamper_type": "editor_software",
+      "description": "Edited in a photo editor; file metadata says 'PicsArt Photo Studio'",
+      "verdict": "LIKELY FAKE",
+      "risk_score": 50.0,
+      "predicted_tampered": true,
+      "top_reason": "Edited in a photo editor",
+      "reasons": [
+        "Edited in a photo editor"
+      ],
+      "codes": [
+        "F_EDITOR_SOFTWARE"
+      ],
+      "layers": [
+        "forensics"
+      ],
+      "processing_time": 3.277
+    }
+  ]
+}
